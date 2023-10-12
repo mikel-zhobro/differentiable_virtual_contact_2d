@@ -35,7 +35,7 @@ Penalty based rigid body dynamics are simulated forward by solving an implicit d
 
 ## Computing differentiable contacts
 1. Compute virtual contacts in world frame :  $\mathbf{^wx_{vc}}=\argmin_\mathbf{x} \psi_1(\mathbf x , \mathbf{q_1}) +\psi_2(\mathbf x , \mathbf{q_2}) + (\psi_1(\mathbf x , \mathbf{q_1}) - \psi_2(\mathbf x , \mathbf{q_2}))^2$
-2. In body frame: $\mathbf{^{b_1}x_{vc}} = \mathbf R_1\mathbf{^wx_{vc}} + \mathbf t_1$, assumed independent of state $q_1$
+2. In body frame: $\mathbf{^{b_1}x_{vc}} = \mathbf R_1\mathbf{^wx_{vc}} + \mathbf t_1$, assumed independent of state $\mathbf q_1$
 3. Project contact points on the surface of the body:  $\mathbf{^{b_1}x_c} = \mathbf{^{b_1}x_{vc}} - \mathbf{^{b_1}n}*d_1$ where  $d_1 = \psi_1(\mathbf{^{b_1}x_{vc}})$
 
 4.  Penetrations: $d(\mathbf q_1, \mathbf q_2) = ||\mathbf D (\mathbf q_1, \mathbf q_2)||_2 =||\mathbf T(\mathbf q_1)\mathbf{^{b_1}x_c} - \mathbf T(\mathbf q_2)\mathbf{^{b_2}x_c} ||_2$
