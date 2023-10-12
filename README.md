@@ -47,7 +47,7 @@ with $\mathbf {\dot R}_1 \mathbf x_1 =  \mathbf w_1 \times \mathbf {R}_1 \mathbf
 6. Contact Normals in body frame: $\mathbf {\tilde n}_1 = \nabla_{\mathbf x } \psi_1(\mathbf x)$, in world frame: $\mathbf n_1(\mathbf q_1) = \mathbf R_1 \mathbf {\tilde n}_1$
 
 7. Contact tangential velocities:
-$\mathbf {\dot t}_1(\mathbf q_1, \mathbf{\dot q_1}) = \mathbf T_{proj} (\mathbf v_1 + \mathbf \omega_1 \times \mathbf R_1 \mathbf x_1)$ where $\mathbf T_{proj} = \mathbf I - \mathbf n_1 \mathbf n_1^T$
+$`\mathbf {\dot t}_1(\mathbf q_1, \mathbf{\dot q_1}) = \mathbf T_{proj} (\mathbf v_1 + \mathbf \omega_1 \times \mathbf R_1 \mathbf x_1)`$ where $\mathbf T_{proj} = \mathbf I - \mathbf n_1 \mathbf n_1^T$
 
 # Some Visuals
 
