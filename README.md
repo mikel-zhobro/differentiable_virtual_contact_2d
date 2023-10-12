@@ -26,7 +26,7 @@ The insallation requires only the package [sdf-contacts](https://gitlab.localnet
 # Math :|
 
 ## Penalty based rigid body dynamics
-Penalty based rigid body dynamics are simulated forward by solving an implicit differential equation of the form $\mathbf{r(q,\dot q, \ddot q, p)} = 0$, where $\mathbf r:= \mathbf M, (\mathbf q, \mathbf p)\mathbf{\ddot q} - \mathbf f(\mathbf{q, \dot q, p})$. Where beside inputs the force component $\mathbf f$ includes the penalty forces that are computed as shown below. 
+Penalty based rigid body dynamics are simulated forward by solving an implicit differential equation of the form $\mathbf{r(q,\dot q, \ddot q, p)} = 0$, where $\mathbf r:= \mathbf M, (\mathbf q, \mathbf p)\mathbf{\ddot q} - \mathbf f(\mathbf{q, \dot q, p})$. Beside inputs the force component $\mathbf f$ includes the penalty forces that are computed as shown below.
 
 ## Computing penalty forces
 1. Contact penalty forces:  $\mathbf f_c ( \mathbf q, \mathbf{\dot q}) = -\mathbf n(\mathbf q) \max \left(0, d(\mathbf q)\right) \left(k_n + k_d \dot d(\mathbf q, \mathbf{\dot q})\right)$
@@ -46,7 +46,8 @@ with $\mathbf {\dot R}_1 \mathbf x_1 =  \mathbf w_1 \times \mathbf {R}_1 \mathbf
 
 6. Contact Normals in body frame: $\mathbf {\tilde n}_1 = \nabla_{\mathbf x } \psi_1(\mathbf x)$, in world frame: $\mathbf n_1(\mathbf q_1) = \mathbf R_1 \mathbf {\tilde n}_1$
 
-7. Contact tangential velocities: $\mathbf {\dot t}_1(\mathbf q_1, \mathbf{\dot q_1}) = \mathbf T_{proj} (\mathbf v_1 + \mathbf \omega_1 \times \mathbf R_1 \mathbf x_1)$ where $\mathbf T_{proj} = \mathbf I - \mathbf n_1 \mathbf n_1^T$
+7. Contact tangential velocities:
+$\mathbf {\dot t}_1(\mathbf q_1, \mathbf{\dot q_1}) = \mathbf T_{proj} (\mathbf v_1 + \mathbf \omega_1 \times \mathbf R_1 \mathbf x_1)$ where $\mathbf T_{proj} = \mathbf I - \mathbf n_1 \mathbf n_1^T$
 
 # Some Visuals
 
