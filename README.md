@@ -25,9 +25,9 @@ The insallation requires only the package [sdf-contacts](https://gitlab.localnet
 
 # Math :|
 ## Computing penalty forces
-1. Contact penalty forces: $\mathbf f_c ( \mathbf q, \mathbf{\dot q}) = -\mathbf n(\mathbf q) \max \left(0, d(\mathbf q)\right) \left(k_n + k_d \dot d(\mathbf q, \mathbf{\dot q})\right)  $
+1. Contact penalty forces:  $\mathbf f_c ( \mathbf q, \mathbf{\dot q}) = -\mathbf n(\mathbf q) \max \left(0, d(\mathbf q)\right) \left(k_n + k_d \dot d(\mathbf q, \mathbf{\dot q})\right)$
 
-2. Coulumb Friction penalty forces: $\mathbf f_t ( \mathbf q, \mathbf{\dot q}) = -\frac{\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }}{||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||}\min \left( k_t ||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||, \mu ||\mathbf f_c( \mathbf q, \mathbf{\dot q}) ||     \right)  $
+2. Coulumb Friction penalty forces: $\mathbf f_t ( \mathbf q, \mathbf{\dot q}) = -\frac{\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }}{||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||}\min \left( k_t ||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||, \mu ||\mathbf f_c( \mathbf q, \mathbf{\dot q}) || \right) $
 
 ## Computing differentiable contacts
 1. Compute virtual contacts in world frame :  $\mathbf{^wx_{vc}}=\argmin_\mathbf{x} \psi_1(\mathbf x , \mathbf{q_1}) +\psi_2(\mathbf x , \mathbf{q_2}) + (\psi_1(\mathbf x , \mathbf{q_1}) - \psi_2(\mathbf x , \mathbf{q_2}))^2$
