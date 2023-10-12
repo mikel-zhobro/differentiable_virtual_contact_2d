@@ -24,6 +24,10 @@ virtual_contact_2d
 The insallation requires only the package [sdf-contacts](https://gitlab.localnet/embodied-vision/mikel-zhobro/planning-with-differentiable-physics/sdf_contacts). No other dependencies are required.
 
 # Math :|
+
+## Penalty based rigid body dynamics
+Penalty based rigid body dynamics are simulated forward by solving an implicit differential equation of the form $\mathbf{r(q,\dot q, \ddot q, p)} = 0$, where $r:= \mathbf M, (\mathbf q, \mathbf p)\mathbf{\ddot q} - \mathbf f(\mathbf{q, \dot q, p}). Where beside inputs the force component $\mathbf f$ includes the penalty forces that are computed as shown below. 
+
 ## Computing penalty forces
 1. Contact penalty forces:  $\mathbf f_c ( \mathbf q, \mathbf{\dot q}) = -\mathbf n(\mathbf q) \max \left(0, d(\mathbf q)\right) \left(k_n + k_d \dot d(\mathbf q, \mathbf{\dot q})\right)$
 
