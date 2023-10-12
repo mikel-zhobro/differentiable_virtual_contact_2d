@@ -44,16 +44,15 @@ Penalty based rigid body dynamics are simulated forward by solving an implicit d
 where $\mathbf{\dot D(\mathbf q_1, \mathbf q_2)} = \mathbf {\dot R}_1 \mathbf x_1 - \mathbf {\dot R}_2 \mathbf x_2 + \mathbf {\dot p}_1 - \mathbf {\dot p}_2$
 with $\mathbf {\dot R}_1 \mathbf x_1 =  \mathbf w_1 \times \mathbf {R}_1 \mathbf x_1$ since we are representing velocities in world frame.
 
-6. Contact Normals in body frame: $\mathbf{\tilde n}_1 = \nabla_{\mathbf x } \psi_1(\mathbf x)$, in world frame: $\mathbf n_1(\mathbf q_1) = \mathbf R_1 \mathbf {\tilde n}_1$
+6. Contact Normals in body frame: $\mathbf {\tilde n}_1 = \nabla_{\mathbf x } \psi_1(\mathbf x)$, in world frame: $\mathbf n_1(\mathbf q_1) = \mathbf R_1 \mathbf {\tilde n}_1$
 
 7. Contact tangential velocities:
-$\mathbf{\dot t}_1(\mathbf q_1, \mathbf{\dot q_1}) = \mathbf T_{proj} (\mathbf v_1 + \mathbf \omega_1 \times \mathbf R_1 \mathbf x_1)$ where $\mathbf T_{proj} = \mathbf I - \mathbf n_1 \mathbf n_1^T$
+$\mathbf {\dot t}_1(\mathbf q_1, \mathbf{\dot q_1}) = \mathbf T_{proj} (\mathbf v_1 + \mathbf \omega_1 \times \mathbf R_1 \mathbf x_1)$ where $\mathbf T_{proj} = \mathbf I - \mathbf n_1 \mathbf n_1^T$
 
 # Some Visuals
 
 ## Lifting some objects
-![](media/lift_circle/lift_no_friction_output_normal.gif)
-![](media/lift_hex_/lift_no_friction_output_normal.gif)
+![](media/lift_circle/lift_no_friction_output_normal.gif){ width=48%} ![](media/lift_hex_/lift_no_friction_output_normal.gif){ width=48%}
 
 ## Input/State/Velocity and Derivatives
 ![](media/lift_circle/lift_no_friction_results2d.png)
