@@ -27,9 +27,7 @@ The insallation requires only the package [sdf-contacts](https://gitlab.localnet
 
 ## Penalty based rigid body dynamics
 Penalty based rigid body dynamics are simulated forward by solving an implicit differential equation of the form $\mathbf{r(q,\dot q, \ddot q, p)} = 0$, where
-$$
-\mathbf r:= \mathbf {\hat M}(\mathbf q, \mathbf p)\mathbf{\ddot q} - \mathbf {\hat f}(\mathbf{q, \dot q, p})
-$$
+$\mathbf r:= \mathbf {\hat M}(\mathbf q, \mathbf p)\mathbf{\ddot q} - \mathbf {\hat f}(\mathbf{q, \dot q, p})$
 Beside inputs the force component $\mathbf {\hat f}$ includes the penalty forces that are computed as shown below.
 
 ## Computing penalty forces
