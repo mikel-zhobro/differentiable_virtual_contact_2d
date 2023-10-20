@@ -35,20 +35,32 @@ Beside inputs the force component $\mathbf {\hat f}$ includes the penalty forces
 
 2. Coulumb Friction penalty forces: $\mathbf f_t ( \mathbf q, \mathbf{\dot q}) = -\frac{\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }}{||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||}\min \left( k_t ||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||, \mu ||\mathbf f_c( \mathbf q, \mathbf{\dot q}) || \right)$
 
+## Discontinues
+This trivial penalty formulation has two discontinuities which arise as effect of the contact penalty forces and Coloumb Friction formulation. More specifically, this discontinuities come from the usage of $\max(.,.)$ $\min(.,.)$.
+
+### Smoothing with virtual contacts
+To smooth out $\max(0,d)$ we can for example reformulate the min-function as: 
+- $g_\{smooth}(d) = d+\alpha$, if $d>0$
+- $g_\{smooth}(d) = \alpha \cdot e^{s/\alpha}$, if $d\leq 0$.
+![smoothed_penallty](https://github.com/jotix16/virtual_contact_2d/assets/25222253/57c42468-f43b-4706-afc7-472bad6ec09b)
+
 ## Computing differentiable contacts
 1. Compute virtual contacts in world frame :  $\mathbf{^wx_{vc}}=\argmin_\mathbf{x} \psi_1(\mathbf x , \mathbf{q_1}) +\psi_2(\mathbf x , \mathbf{q_2}) + (\psi_1(\mathbf x , \mathbf{q_1}) - \psi_2(\mathbf x , \mathbf{q_2}))^2$
-2. In body frame: $\mathbf{^{b_1}x_{vc}} = \mathbf R_1\mathbf{^wx_{vc}} + \mathbf t_1$, assumed independent of state $\mathbf q_1$
-3. Project contact points on the surface of the body:  $\mathbf{^{b_1}x_c} = \mathbf{^{b_1}x_{vc}} - \mathbf{^{b_1}n}*d_1$ where  $d_1 = \psi_1(\mathbf{^{b_1}x_{vc}})$
+![sdf_contact](https://github.com/jotix16/virtual_contact_2d/assets/25222253/cba06772-ff88-4993-a999-24f425cf6b05)
 
-4.  Penetrations: $d(\mathbf q_1, \mathbf q_2) = ||\mathbf D (\mathbf q_1, \mathbf q_2)||_2 =||\mathbf T(\mathbf q_1)\mathbf{^{b_1}x_c} - \mathbf T(\mathbf q_2)\mathbf{^{b_2}x_c} ||_2$
+   
+3. In body frame: $\mathbf{^{b_1}x_{vc}} = \mathbf R_1\mathbf{^wx_{vc}} + \mathbf t_1$, assumed independent of state $\mathbf q_1$
+4. Project contact points on the surface of the body:  $\mathbf{^{b_1}x_c} = \mathbf{^{b_1}x_{vc}} - \mathbf{^{b_1}n}*d_1$ where  $d_1 = \psi_1(\mathbf{^{b_1}x_{vc}})$
 
-5. Penetration time diff:  $\dot d(\mathbf q_1, \mathbf q_2, \mathbf {\dot q}_1,  \mathbf {\dot q}_2) =  \frac{\mathbf D (\mathbf q_1, \mathbf q_2)}{||\mathbf D (\mathbf q_1, \mathbf q_2)||_2}    \mathbf{\dot D(\mathbf q_1, \mathbf q_2)}$
+5.  Penetrations: $d(\mathbf q_1, \mathbf q_2) = ||\mathbf D (\mathbf q_1, \mathbf q_2)||_2 =||\mathbf T(\mathbf q_1)\mathbf{^{b_1}x_c} - \mathbf T(\mathbf q_2)\mathbf{^{b_2}x_c} ||_2$
+
+6. Penetration time diff:  $\dot d(\mathbf q_1, \mathbf q_2, \mathbf {\dot q}_1,  \mathbf {\dot q}_2) =  \frac{\mathbf D (\mathbf q_1, \mathbf q_2)}{||\mathbf D (\mathbf q_1, \mathbf q_2)||_2}    \mathbf{\dot D(\mathbf q_1, \mathbf q_2)}$
 where $\mathbf{\dot D(\mathbf q_1, \mathbf q_2)} = \mathbf {\dot R}_1 \mathbf x_1 - \mathbf {\dot R}_2 \mathbf x_2 + \mathbf {\dot p}_1 - \mathbf {\dot p}_2$
 with $\mathbf {\dot R}_1 \mathbf x_1 =  \mathbf w_1 \times \mathbf {R}_1 \mathbf x_1$ since we are representing velocities in world frame.
 
-6. Contact Normals in body frame: $`\mathbf {\tilde n}_1 = \nabla_{\mathbf x } \psi_1(\mathbf x)`$, in world frame: $\mathbf n_1(\mathbf q_1) = \mathbf R_1 \mathbf {\tilde n}_1$
+7. Contact Normals in body frame: $`\mathbf {\tilde n}_1 = \nabla_{\mathbf x } \psi_1(\mathbf x)`$, in world frame: $\mathbf n_1(\mathbf q_1) = \mathbf R_1 \mathbf {\tilde n}_1$
 
-7. Contact tangential velocities:
+8. Contact tangential velocities:
 $`\mathbf {\dot t}_1(\mathbf q_1, \mathbf{\dot q_1}) = \mathbf T_{proj} (\mathbf v_1 + \mathbf \omega_1 \times \mathbf R_1 \mathbf x_1)`$ where $\mathbf T_{proj} = \mathbf I - \mathbf n_1 \mathbf n_1^T$
 
 # Some Visuals
