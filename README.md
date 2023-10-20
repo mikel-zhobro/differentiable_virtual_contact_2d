@@ -21,19 +21,25 @@ virtual_contact_2d
 ```
 
 ## Installation
-The insallation requires only the package [sdf-contacts](https://gitlab.localnet/embodied-vision/mikel-zhobro/planning-with-differentiable-physics/sdf_contacts). No other dependencies are required.
+The insallation requires only the package [sdf-contacts](https://github.com/mikel-zhobro/sdf_contacts.git). No other dependencies are required.
+
+```bash
+pip install git+https://github.com/mikel-zhobro/sdf_contacts.git
+```
 
 # Theory
 
 ## Penalty based rigid body dynamics
 Penalty based rigid body dynamics are simulated forward by solving an implicit differential equation of the form $\mathbf{r(q,\dot q, \ddot q, p)} = 0$, where
-$\mathbf r:= \mathbf {\hat M}(\mathbf q, \mathbf p)\mathbf{\ddot q} - \mathbf {\hat f}(\mathbf{q, \dot q, p})$
+$\mathbf r:= \mathbf {\hat M}(\mathbf q, \mathbf p)\mathbf{\ddot q} - \mathbf {\hat f}(\mathbf{q, \dot q, p})$.
 Beside inputs the force component $\mathbf {\hat f}$ includes the penalty forces that are computed as shown below.
 
 ## Computing penalty forces
 1. Contact penalty forces:  $\mathbf f_c ( \mathbf q, \mathbf{\dot q}) = -\mathbf n(\mathbf q) \max \left(0, d(\mathbf q)\right) \left(k_n + k_d \dot d(\mathbf q, \mathbf{\dot q})\right)$
 
 2. Coulumb Friction penalty forces: $\mathbf f_t ( \mathbf q, \mathbf{\dot q}) = -\frac{\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }}{||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||}\min \left( k_t ||\mathbf{\dot t( \mathbf q, \mathbf{\dot q}) }||, \mu ||\mathbf f_c( \mathbf q, \mathbf{\dot q}) || \right)$
+
+$\color{red} d \text{ here represent penetrations (not SDF distances as in other notations)}$!
 
 ## Discontinues
 This trivial penalty formulation has two discontinuities which arise as effect of the contact penalty forces and Coloumb Friction formulation. More specifically, this discontinuities come from the usage of $\max(.,.)$ $\min(.,.)$.
